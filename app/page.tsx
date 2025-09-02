@@ -29,21 +29,18 @@ export default function Home() {
         quantity={100}
       />
       <h1 className="py-3.5 px-0.5 z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ">
-        chronark
+        Shrey Trivedi
       </h1>
 
       <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      <div className="my-16 text-center animate-fade-in">
-        <h2 className="text-sm text-zinc-500 ">
-          I'm building{" "}
-          <Link
-            target="_blank"
-            href="https://unkey.dev"
-            className="underline duration-500 hover:text-zinc-300"
-          >
-            unkey.dev
-          </Link> to solve API authentication and authorization for developers.
+      <div className="my-16 text-center animate-fade-in max-w-xl">
+        <h2 className="text-sm text-zinc-400 ">
+          Ambitious and intuitive Full Stack Developer with 3+ years experience designing, developing, and implementing applications using JavaScript, React, Next.js, Node.js, and AWS. Previously built social features used by 20k+ daily users, architected platforms end-to-end, and shipped serverless services in Python.
         </h2>
+        <div className="mt-6 flex items-center justify-center gap-6 text-zinc-400">
+          <Link href="/projects" className="underline duration-500 hover:text-zinc-300">View projects</Link>
+          <Link href="/contact" className="underline duration-500 hover:text-zinc-300">Get in touch</Link>
+        </div>
       </div>
     </div>
   );

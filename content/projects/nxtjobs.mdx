@@ -1,0 +1,29 @@
+---
+published: true
+title: NxtJobs — ML‑Powered Job Search & Recruiting
+description: Personalized job discovery with skills evaluation, one‑click multi‑apply, and recruiter tooling.
+date: 2024-07-01
+url: 
+repository: 
+---
+
+NxtJobs automates job search by matching candidates to roles based on skills, projects, and intent signals. Recruiters get immediate shortlists and outreach tools.
+
+Highlights:
+
+- Profile import from resume/GitHub/LinkedIn; skill graph extraction
+- Semantic matching with vector search and ranking models
+- One‑click multi‑apply with auto‑filled forms and tailored cover letters
+- Recruiter dashboard with filters, pipelines, and messaging
+- Metrics: response rates, time‑to‑interview, and funnel analytics
+
+Architecture:
+
+- Ingestion: resume parser (ParseIt), GitHub/LinkedIn APIs
+- Matching: embeddings + rerankers (BERT/ColBERT) in PGVector/FAISS
+- Orchestration: workers for scraping/posting; email/ATS integrations
+- UI: Next.js for candidate and recruiter portals
+
+Tech stack: Next.js, Node.js, PostgreSQL, PGVector/FAISS, Redis, Tailwind.
+
+

@@ -1,0 +1,29 @@
+---
+published: true
+title: ParseIt — High‑Performance Resume Parser
+description: Fast, accurate resume parsing and ranking with deploy‑anywhere architecture.
+date: 2024-02-01
+url: 
+repository: 
+---
+
+ParseIt ingests and parses large batches of resumes, extracting entities and ranking candidates using configurable scoring strategies.
+
+Highlights:
+
+- Multi‑format ingestion: PDF, DOCX, image OCR
+- Structured extraction: personal info, education, experience, skills
+- Configurable scoring: recency, seniority, skill match, tenure
+- Bulk processing with parallel workers and deduplication
+- Export to CSV/JSON and ATS integrations via webhooks
+
+Architecture:
+
+- API: FastAPI/Node with async workers (RQ/Celery/BullMQ)
+- NLP: spaCy/transformers for NER and semantic skill matching
+- Queue: Redis/SQS, Storage: S3, DB: Postgres/Mongo
+- UI: Next.js dashboard for uploads, search, filters, and exports
+
+Tech stack: Python, FastAPI, spaCy, transformers, Node.js, Next.js, Redis/SQS, PostgreSQL/MongoDB, S3.
+
+

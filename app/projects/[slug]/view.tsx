@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 export const ReportView: React.FC<{ slug: string }> = ({ slug }) => {
 	useEffect(() => {
+		if (typeof window === "undefined") return;
 		fetch("/api/incr", {
 			method: "POST",
 			headers: {

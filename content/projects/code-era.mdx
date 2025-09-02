@@ -1,0 +1,29 @@
+---
+published: true
+title: Code‑Era — Online Coding Platform
+description: A scalable coding assessment and practice platform powered by Next.js, NestJS, AWS Lambda, and Judge0.
+date: 2023-08-01
+url: 
+repository: 
+---
+
+Code‑Era is a full‑stack coding platform designed for assessments, practice, and interviews. It supports multi‑language execution, test cases, and real‑time feedback at scale.
+
+Highlights:
+
+- Problem authoring with input/output and hidden test cases
+- Multi‑language code execution via Judge0 with sand‑boxing
+- Asynchronous grading with AWS Lambda + SQS for scale and cost‑efficiency
+- Result dashboards, submissions history, and plagiarism checks
+- Role‑based access for admins, instructors, and learners
+
+Architecture:
+
+- Frontend: Next.js (App Router), React Query, Tailwind, SSR/SSG
+- Backend: NestJS (REST + WebSocket), Prisma, JWT auth
+- Execution: Judge0, Lambda workers, SQS, CloudWatch
+- Storage: PostgreSQL (problems/submissions), S3 (assets), Redis (queue hints)
+
+Tech stack: Next.js, NestJS, TypeScript, Prisma, PostgreSQL, AWS Lambda, SQS, S3, Judge0, Redis, Tailwind.
+
+

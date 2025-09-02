@@ -1,0 +1,30 @@
+---
+published: true
+title: Camera Forensics — AI Video Search & Evidence Pipeline
+description: Search objects and actions across camera streams with natural language, frame capture, and case workflows.
+date: 2024-09-01
+url: 
+repository: 
+---
+
+Camera Forensics enables investigators to query large fleets of camera streams using natural language and object filters, then collect frames and case artifacts.
+
+Capabilities:
+
+- Natural language search ("red car turning left") over indexed footage
+- Object/person/plate detection with temporal tracking
+- Cross‑camera correlation and geo‑spatial filtering
+- Frame capture, evidence timelines, and chain‑of‑custody export
+- Alerts on re‑identification and watchlists
+
+Architecture:
+
+- Edge: RTSP ingestion → FFmpeg → frames → Kafka
+- AI: YOLO/Detectron + ReID embeddings + action recognition
+- Index: Vector DB (FAISS/PGVector), metadata in Postgres
+- Orchestration: Kafka + workers, object storage in S3
+- UI: Next.js dashboard for search, review, and export
+
+Tech stack: Python, PyTorch, OpenCV, FFmpeg, Kafka, PostgreSQL, PGVector, Next.js, S3.
+
+

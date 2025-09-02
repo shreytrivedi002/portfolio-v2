@@ -1,0 +1,28 @@
+---
+published: true
+title: Live Bus Tracking — Vibgyor Schools
+description: Real‑time school bus tracking backend with NestJS, Kafka, WebSockets, and Redis; built for massive concurrency.
+date: 2023-03-01
+url: 
+repository: 
+---
+
+Designed and implemented the backend powering city‑wide, real‑time bus tracking for Vibgyor Schools.
+
+Responsibilities & scale:
+
+- Live location updates over WebSockets to millions of users
+- Thousands of concurrent routes with geo‑fencing and ETA updates
+- Horizontal scalability with Kafka partitions and stateless services
+- Caching layers and back‑pressure handling for bursty updates
+
+Architecture:
+
+- Ingestion: GPS devices → gateway → Kafka topics
+- Backend: NestJS microservices (Kafka adapters), REST + WebSocket API
+- State: Redis for presence/locations, PostGIS for geo operations
+- Clients: Web/mobile apps subscribing to class/route topics
+
+Tech stack: NestJS, Kafka, Redis, PostgreSQL/PostGIS, WebSocket, Docker, Kubernetes.
+
+

@@ -5,37 +5,54 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
 import { Redis } from "@upstash/redis";
+const allowedSlugs = new Set([
+  "evergreen-club",
+  "cam-era",
+  "code-era",
+  "st-txt",
+  "insta-backend",
+  "parseit",
+  "requestify-nika",
+  "camera-forensics",
+  "skill-certify",
+  "nxtjobs",
+  "vibgyor-bus-tracking",
+]);
 import { Eye } from "lucide-react";
-
-const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-  const views = (
-    await redis.mget<number[]>(
-      ...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":")),
-    )
-  ).reduce((acc, v, i) => {
-    acc[allProjects[i].slug] = v ?? 0;
-    return acc;
-  }, {} as Record<string, number>);
+  const hasRedis = !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN;
+  const visibleProjects = allProjects.filter((p) => p.published && allowedSlugs.has(p.slug));
+  let views: Record<string, number> = {};
+  if (hasRedis) {
+    const redis = Redis.fromEnv();
+    views = (
+      await redis.mget<number[]>(
+        ...visibleProjects.map((p) => ["pageviews", "projects", p.slug].join(":")),
+      )
+    ).reduce((acc, v, i) => {
+      acc[visibleProjects[i].slug] = v ?? 0;
+      return acc;
+    }, {} as Record<string, number>);
+  } else {
+    views = visibleProjects.reduce((acc, p) => {
+      acc[p.slug] = 0;
+      return acc;
+    }, {} as Record<string, number>);
+  }
 
-  const featured = allProjects.find((project) => project.slug === "unkey")!;
-  const top2 = allProjects.find((project) => project.slug === "planetfall")!;
-  const top3 = allProjects.find((project) => project.slug === "highstorm")!;
-  const sorted = allProjects
-    .filter((p) => p.published)
-    .filter(
-      (project) =>
-        project.slug !== featured.slug &&
-        project.slug !== top2.slug &&
-        project.slug !== top3.slug,
-    )
+  const published = visibleProjects
     .sort(
       (a, b) =>
         new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
         new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
     );
+
+  const featured = published[0];
+  const top2 = published[1];
+  const top3 = published[2];
+  const sorted = published.slice(3);
 
   return (
     <div className="relative pb-16">
@@ -52,6 +69,7 @@ export default async function ProjectsPage() {
         <div className="w-full h-px bg-zinc-800" />
 
         <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
+          {featured && (
           <Card>
             <Link href={`/projects/${featured.slug}`}>
               <article className="relative w-full h-full p-4 md:p-8">
@@ -92,11 +110,12 @@ export default async function ProjectsPage() {
               </article>
             </Link>
           </Card>
+          )}
 
           <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
-            {[top2, top3].map((project) => (
-              <Card key={project.slug}>
-                <Article project={project} views={views[project.slug] ?? 0} />
+            {[top2, top3].filter(Boolean).map((project) => (
+              <Card key={project!.slug}>
+                <Article project={project!} views={views[project!.slug] ?? 0} />
               </Card>
             ))}
           </div>

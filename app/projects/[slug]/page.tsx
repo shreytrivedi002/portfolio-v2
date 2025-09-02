@@ -14,26 +14,51 @@ type Props = {
   };
 };
 
-const redis = Redis.fromEnv();
+const hasRedis = !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN;
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
+  const allowed = new Set([
+    "evergreen-club",
+    "cam-era",
+    "code-era",
+    "st-txt",
+    "insta-backend",
+    "parseit",
+    "requestify-nika",
+    "camera-forensics",
+    "skill-certify",
+    "nxtjobs",
+    "vibgyor-bus-tracking",
+  ]);
   return allProjects
-    .filter((p) => p.published)
-    .map((p) => ({
-      slug: p.slug,
-    }));
+    .filter((p) => p.published && allowed.has(p.slug))
+    .map((p) => ({ slug: p.slug }));
 }
 
 export default async function PostPage({ params }: Props) {
   const slug = params?.slug;
-  const project = allProjects.find((project) => project.slug === slug);
+  const allowed = new Set([
+    "evergreen-club",
+    "cam-era",
+    "code-era",
+    "st-txt",
+    "insta-backend",
+    "parseit",
+    "requestify-nika",
+    "camera-forensics",
+    "skill-certify",
+    "nxtjobs",
+    "vibgyor-bus-tracking",
+  ]);
+  const project = allProjects.find((project) => project.slug === slug && allowed.has(project.slug));
 
   if (!project) {
     notFound();
   }
 
-  const views =
-    (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
+  const views = hasRedis
+    ? ((await Redis.fromEnv().get<number>(["pageviews", "projects", slug].join(":"))) ?? 0)
+    : 0;
 
   return (
     <div className="bg-zinc-50 min-h-screen">

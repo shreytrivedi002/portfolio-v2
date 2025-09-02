@@ -1,0 +1,29 @@
+---
+published: true
+title: ST.txt — Collaborative Text Editor
+description: Real‑time collaborative editor with autosave, presence, rich‑text, and end‑to‑end encrypted chat.
+date: 2023-05-01
+url: 
+repository: 
+---
+
+ST.txt is a web‑based collaborative text editor focused on reliability and team productivity. It offers autosave, version history, and real‑time collaboration with presence indicators.
+
+Features:
+
+- Real‑time collaborative editing (CRDT/OT)
+- Autosave, snapshots, and document version history
+- E2E‑encrypted team chat, voice/video huddles, and threaded discussions
+- Access control, share links, and granular permissions
+- Offline‑first with sync on reconnect
+
+Architecture:
+
+- Frontend: Next.js + React, TipTap/ProseMirror for rich‑text
+- Collab: Y.js/Automerge with WebSocket signaling and awareness
+- Backend: Node/NestJS, WebSocket gateway, JWT auth
+- Storage: Postgres (docs, versions), S3 (attachments)
+
+Tech stack: Next.js, React, TipTap/ProseMirror, Y.js, WebSocket, NestJS, PostgreSQL, S3, WebRTC.
+
+

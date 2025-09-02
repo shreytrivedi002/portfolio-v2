@@ -1,0 +1,29 @@
+---
+published: true
+title: Skill Certify — Smart Exam & Certification Platform
+description: Online exams with auto‑grading, proctoring, and LLM‑assisted test generation when gaps are detected.
+date: 2024-04-01
+url: https://github.com/shreytrivedi002/skill_certify
+repository: shreytrivedi002/skill_certify
+---
+
+Skill Certify is a modern examination suite for assessments, certifications, and hiring. It automates grading and can generate new tests using LLMs where coverage is missing.
+
+Features:
+
+- Exam types: MCQ, coding, essays, file uploads
+- Auto‑grading for MCQ/coding, rubric‑based assisted marking for essays
+- Proctoring: browser lockdown, face/ID checks, anomaly detection
+- LLM‑assisted test generation mapped to skill taxonomy
+- Analytics: cohort performance, question difficulty, and item analysis
+
+Architecture:
+
+- Frontend: Next.js, Tailwind
+- Backend: NestJS/Express, Prisma, PostgreSQL/Mongo
+- Workers: queue (BullMQ/SQS) for grading and reports
+- AI: OpenAI/LLM providers with system prompts and guardrails
+
+Tech stack: Next.js, NestJS, PostgreSQL/Mongo, Redis/SQS, OpenAI/LLM, Tailwind.
+
+

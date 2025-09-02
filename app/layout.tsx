@@ -6,16 +6,17 @@ import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
   title: {
-    default: "chronark.com",
-    template: "%s | chronark.com",
+    default: "Shrey Trivedi",
+    template: "%s | Shrey Trivedi",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description: "Full Stack Developer specializing in React, Next.js, Node.js, and AWS.",
+  metadataBase: new URL("https://shreytrivedi.dev"),
   openGraph: {
-    title: "chronark.com",
+    title: "Shrey Trivedi",
     description:
-      "Co-founder of unkey.dev and founder of planetfall.io",
-    url: "https://chronark.com",
-    siteName: "chronark.com",
+      "Full Stack Developer specializing in React, Next.js, Node.js, and AWS.",
+    url: "https://shreytrivedi.dev",
+    siteName: "shreytrivedi.dev",
     images: [
       {
         url: "https://chronark.com/og.png",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Chronark",
+    title: "Shrey Trivedi",
     card: "summary_large_image",
   },
   icons: {
